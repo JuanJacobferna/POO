@@ -3,25 +3,24 @@ import java.util.*;
 public class Ascensor {
     private int id;
     private int pisoActual;
-    private int direccion; // -1 = bajando, 0 = detenido, 1 = subiendo
+    private int direccion; 
     private Puerta puerta;
     private Map<Integer, BotonCabina> botones;
 
-    // Constructor
+    
     public Ascensor(int id, int pisos) {
         this.id = id;
-        this.pisoActual = 1; // Comienza en el piso 1
-        this.direccion = 0; // Detenido
+        this.pisoActual = 1; /
+        this.direccion = 0; 
         this.puerta = new Puerta();
         this.botones = new HashMap<>();
 
-        // Crea un botón por cada piso
         for (int i = 1; i <= pisos; i++) {
             botones.put(i, new BotonCabina(i));
         }
     }
 
-    // Mueve el ascensor un piso hacia el destino
+    
     public String moverUnPiso(int destino) {
         if (destino == pisoActual) {
             return "Ascensor " + id + " ya está en el piso " + pisoActual;
@@ -38,7 +37,7 @@ public class Ascensor {
         return "Ascensor " + id + " se mueve al piso " + pisoActual;
     }
 
-    // Cuando llega al piso destino
+
     public List<String> llegar() {
         List<String> mensajes = new ArrayList<>();
         mensajes.add(puerta.abrir());
@@ -51,7 +50,7 @@ public class Ascensor {
 
         mensajes.add(puerta.cerrar());
 
-        // Si ya no quedan botones encendidos, se detiene
+
         boolean algunoEncendido = botones.values().stream()
                 .anyMatch(BotonCabina::isEncendido);
         if (!algunoEncendido) {
