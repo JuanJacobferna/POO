@@ -64,6 +64,16 @@ public class Ascensor {
         return pisoActual;
     }
 
+    
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Ascensor " + id;
+    }
+
     public void presionarBotonCabina(int pisoDestino) {
         if (botones.containsKey(pisoDestino)) {
             botones.get(pisoDestino).presionar();

@@ -50,6 +50,14 @@ public class ControlAscensor {
         }
     }
 
+    // Imprime el estado actual de todos los ascensores
+    public void imprimirEstado() {
+        System.out.println("Estado de ascensores:");
+        for (Ascensor a : ascensores) {
+            System.out.println("- " + a.toString() + " -> piso " + a.getPisoActual());
+        }
+    }
+
     
     public static void main(String[] args) {
         ControlAscensor control = new ControlAscensor(2, 5);
