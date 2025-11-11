@@ -10,7 +10,7 @@ public class Ascensor {
     
     public Ascensor(int id, int pisos) {
         this.id = id;
-        this.pisoActual = 1; /
+        this.pisoActual = 1;
         this.direccion = 0; 
         this.puerta = new Puerta();
         this.botones = new HashMap<>();
