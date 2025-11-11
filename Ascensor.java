@@ -73,7 +73,42 @@ public class Ascensor {
             System.out.println("Piso inválido.");
         }
     }
-}
+
+        public static void main(String[] args) {
+            System.out.println("=== Prueba del Ascensor ===\n");
+        
+           
+            Ascensor ascensor = new Ascensor(1, 5);
+            System.out.println("Ascensor creado. Piso inicial: " + ascensor.getPisoActual() + "\n");
+
+            ascensor.presionarBotonCabina(3);
+            System.out.println("Moviendo a piso 3...");
+            System.out.println(ascensor.moverUnPiso(3));
+            System.out.println(ascensor.moverUnPiso(3));
+
+           
+            System.out.println("\nLlegando al piso 3:");
+            for (String mensaje : ascensor.llegar()) {
+                System.out.println(mensaje);
+            }
+
+            System.out.println("\nPiso actual: " + ascensor.getPisoActual());
+
+            ascensor.presionarBotonCabina(5);
+            System.out.println("\nMoviendo a piso 5...");
+            System.out.println(ascensor.moverUnPiso(5));
+            System.out.println(ascensor.moverUnPiso(5));
+
+           
+            System.out.println("\nLlegando al piso 5:");
+            for (String mensaje : ascensor.llegar()) {
+                System.out.println(mensaje);
+            }
+
+            System.out.println("\nPiso actual: " + ascensor.getPisoActual());
+            System.out.println("\n=== Fin de la prueba ===");
+        }
+    }
 
 
 
