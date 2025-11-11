@@ -45,7 +45,7 @@ public class Ascensor {
 
         BotonCabina boton = botones.get(pisoActual);
         if (boton.isEncendido()) {
-            Boton.cancelar();
+            boton.cancelar();
             mensajes.add("Botón del piso " + pisoActual + " apagado");
         }
 
