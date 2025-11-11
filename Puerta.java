@@ -26,3 +26,18 @@ public class Puerta {
         return abierta;
             
 }
+
+public static void main(String[] args) {
+    Puerta  puerta= new Puerta();
+
+    System.out.println(puerta.abrir());
+    System.out.println("¿La puerta está abierta? " + puerta.isAbierta());
+   
+   
+    System.out.println(puerta.cerrar());
+    System.out.println("¿La puerta está abierta? " + puerta.isAbierta());
+
+
+}
+
+}
