@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 public class MainAscensor {
 
@@ -12,34 +13,35 @@ public class MainAscensor {
         }
 
         // Ejecutar el menú interactivo (usa ControlAscensor ya compilado)
-        try (Scanner sc = new Scanner(System.in)) {
-            System.out.println("=== Sistema de Ascensores (MainAscensor) ===");
-            System.out.print("Ingrese número de ascensores: ");
-            int numAsc = readInt(sc);
-            System.out.print("Ingrese número de pisos: ");
-            int pisos = readInt(sc);
+        System.out.println("=== Sistema de Ascensores (MainAscensor) ===");
+        int numAsc = readIntInteractive("Ingrese número de ascensores: ");
+        int pisos = readIntInteractive("Ingrese número de pisos: ");
 
-            ControlAscensor control = new ControlAscensor(numAsc, pisos);
+        ControlAscensor control = new ControlAscensor(numAsc, pisos);
 
-            System.out.println("\nSistema iniciado. Comandos: <piso> solicitar, 'estado', 'salir'.");
-            while (true) {
-                System.out.print("\n> ");
-                String line = sc.nextLine().trim();
-                if (line.isEmpty()) continue;
-                if (line.equalsIgnoreCase("salir") || line.equalsIgnoreCase("exit")) {
-                    System.out.println("Saliendo...");
-                    break;
-                }
-                if (line.equalsIgnoreCase("estado") || line.equalsIgnoreCase("status")) {
-                    control.imprimirEstado();
-                    continue;
-                }
-                try {
-                    int piso = Integer.parseInt(line);
-                    control.solicitarAscensor(piso);
-                } catch (NumberFormatException e) {
-                    System.out.println("Entrada no válida. Usa un número de piso, 'estado' o 'salir'.");
-                }
+        System.out.println("\nSistema iniciado. Comandos: <piso> solicitar, 'estado', 'salir'.");
+        while (true) {
+            String line = promptLine("\n> ");
+            if (line == null) {
+                // en dialogs Cancel -> salir
+                System.out.println("Saliendo...");
+                break;
+            }
+            line = line.trim();
+            if (line.isEmpty()) continue;
+            if (line.equalsIgnoreCase("salir") || line.equalsIgnoreCase("exit")) {
+                System.out.println("Saliendo...");
+                break;
+            }
+            if (line.equalsIgnoreCase("estado") || line.equalsIgnoreCase("status")) {
+                control.imprimirEstado();
+                continue;
+            }
+            try {
+                int piso = Integer.parseInt(line);
+                control.solicitarAscensor(piso);
+            } catch (NumberFormatException e) {
+                System.out.println("Entrada no válida. Usa un número de piso, 'estado' o 'salir'.");
             }
         }
     }
