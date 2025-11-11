@@ -1,52 +1,58 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class Ascensor {
     private int id;
     private int pisoActual;
-    private int direccion;
-    private ArrayList<Puerta> puertas;
+    private int direccion; // -1 = bajando, 0 = detenido, 1 = subiendo
+    private Puerta puerta;
     private Map<Integer, BotonCabina> botones;
-    
 
-    public Ascensor(int id, int pisoInicial, int direccionInicial) {
+    // Constructor
+    public Ascensor(int id, int pisos) {
         this.id = id;
-        this.pisoActual = pisoInicial;
-        this.direccion = direccionInicial;
-        this.puertas = new ArrayList<>();
-        this.botones = new Map<>();
+        this.pisoActual = 1; // Comienza en el piso 1
+        this.direccion = 0; // Detenido
+        this.puerta = new Puerta();
+        this.botones = new HashMap<>();
 
-for (int i = 1; i <=  pisos; i++){
-    botones.put(i, new BotonCabina(i));
-
-}
-
-
+        // Crea un botón por cada piso
+        for (int i = 1; i <= pisos; i++) {
+            botones.put(i, new BotonCabina(i));
+        }
     }
-    public String moverUnpiso(int destino){
-        pisoActual++;
-        direccion=1;
-    }else{
-        pisoActual--;
-        direccion=-1;
 
-    
+    // Mueve el ascensor un piso hacia el destino
+    public String moverUnPiso(int destino) {
+        if (destino == pisoActual) {
+            return "Ascensor " + id + " ya está en el piso " + pisoActual;
+        }
+
+        if (destino > pisoActual) {
+            pisoActual++;
+            direccion = 1; // subiendo
+        } else {
+            pisoActual--;
+            direccion = -1; // bajando
+        }
+
+        return "Ascensor " + id + " se mueve al piso " + pisoActual;
     }
- 
-    return "Ascensor " + id + " se ha movido al piso " + pisoActual;
 
-}
-public List<String> llegar(){
-    List<String> mensajes = new ArrayList<>();
-    mensajes.add(puerta.abrir());
+    // Cuando llega al piso destino
+    public List<String> llegar() {
+        List<String> mensajes = new ArrayList<>();
+        mensajes.add(puerta.abrir());
 
-    BotonCabina boton = botones.get(pisoActual);
-    if (boton.isEncendido()){
-        boton.cancelar();
-        mensajes.add("Botón del piso " + pisoActual + " apagado.");
-    }
-    mensajes.add(puerta.cerrar());
+        BotonCabina boton = botones.get(pisoActual);
+        if (boton.isEncendido()) {
+            Boton.cancelar();
+            mensajes.add("Botón del piso " + pisoActual + " apagado");
+        }
 
-     boolean algunoEncendido = botones.values().stream()
+        mensajes.add(puerta.cerrar());
+
+        // Si ya no quedan botones encendidos, se detiene
+        boolean algunoEncendido = botones.values().stream()
                 .anyMatch(BotonCabina::isEncendido);
         if (!algunoEncendido) {
             direccion = 0;
@@ -67,10 +73,7 @@ public List<String> llegar(){
             System.out.println("Piso inválido.");
         }
     }
-
-
-
-
+}
 
 
 
