@@ -54,7 +54,6 @@ public class Ascensor {
 
         mensajes.add(puerta.cerrar());
 
-        // Si ya no quedan botones encendidos, se detiene
         boolean algunoEncendido = botones.values().stream()
                 .anyMatch(BotonCabina::isEncendido);
         if (!algunoEncendido) {
