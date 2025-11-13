@@ -30,14 +30,14 @@ public class MainAscensor {
                 continue;
             }
 
-            // Presionar el botón interno del ascensor
+           
             ascensor.presionarBotonCabina(destino);
 
-            // Moverse piso por piso
+        
             while (ascensor.getPisoActual() != destino) {
                 System.out.println(ascensor.moverUnPiso(destino));
                 try {
-                    Thread.sleep(800); // Pausa para simular movimiento real
+                    Thread.sleep(800); 
                 } catch (Exception e) {}
             }
 
