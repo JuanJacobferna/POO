@@ -3,22 +3,22 @@
 // que permite solicitar el ascensor para subir o bajar.
 
 public class BotonPiso extends Boton {
-    private String direccion; // "subir" o "bajar"
+    private String direccion; 
 
-    // Constructor: recibe la dirección del botón
+
     public BotonPiso(String direccion) {
-        super(); // Llama al constructor de Boton
+        super(); 
         this.direccion = direccion;
     }
 
-    // Devuelve la dirección del botón ("subir" o "bajar")
+  
     public String getDireccion() {
         return direccion;
     }
 
-    // Prueba de funcionamiento independiente
+
     public static void main(String[] args) {
-        // Creamos dos botones: uno de subir y otro de bajar
+       
         BotonPiso subir = new BotonPiso("subir");
         BotonPiso bajar = new BotonPiso("bajar");
 
