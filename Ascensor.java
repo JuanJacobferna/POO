@@ -6,7 +6,6 @@ import java.util.*;
 public class Ascensor {
     private int id;
     private int pisoActual;
-    private int direccion; 
     private Puerta puerta;
     private Map<Integer, BotonCabina> botones;
 
@@ -14,7 +13,6 @@ public class Ascensor {
     public Ascensor(int id, int pisos) {
         this.id = id;
         this.pisoActual = 1; 
-        this.direccion = 0; 
         this.puerta = new Puerta();
         this.botones = new HashMap<>();
 
@@ -31,11 +29,9 @@ public class Ascensor {
         }
 
         if (destino > pisoActual) {
-            pisoActual++;
-            direccion = 1; 
+            pisoActual++; 
         } else {
-            pisoActual--;
-            direccion = -1; 
+            pisoActual--; 
         }
 
         return "Ascensor " + id + " se mueve al piso " + pisoActual;
@@ -58,7 +54,6 @@ public class Ascensor {
         boolean algunoEncendido = botones.values().stream()
                 .anyMatch(BotonCabina::isEncendido);
         if (!algunoEncendido) {
-            direccion = 0;
         }
 
         return mensajes;
